@@ -580,12 +580,12 @@ class SoulAssassinsAnalyzer:
             }
         }
 
-        # Données de production
+        # Données de production - CORRIGÉ : valeurs numériques seulement
         self.production_data = {
             'DJ MUGGS': {
                 'albums_produits': 15,
                 'duree_contrat': 26,
-                'rythme_sorties': '1-2 ans',
+                'rythme_sorties': 1.5,  # Corrigé : nombre seulement
                 'qualite_production': 9,
                 'autonomie_artistique': 10,
                 'support_label': 8,
@@ -594,7 +594,7 @@ class SoulAssassinsAnalyzer:
             'CYPRESS HILL': {
                 'albums_produits': 3,
                 'duree_contrat': 7,
-                'rythme_sorties': '3-4 ans',
+                'rythme_sorties': 3.5,  # Corrigé : nombre seulement
                 'qualite_production': 8,
                 'autonomie_artistique': 9,
                 'support_label': 9,
@@ -603,7 +603,7 @@ class SoulAssassinsAnalyzer:
             'GZA': {
                 'albums_produits': 1,
                 'duree_contrat': 1,
-                'rythme_sorties': '1 an',
+                'rythme_sorties': 1.0,  # Corrigé : nombre seulement
                 'qualite_production': 9,
                 'autonomie_artistique': 9,
                 'support_label': 7,
@@ -612,7 +612,7 @@ class SoulAssassinsAnalyzer:
             'ROC MARCIANO': {
                 'albums_produits': 2,
                 'duree_contrat': 13,
-                'rythme_sorties': '6-7 ans',
+                'rythme_sorties': 6.5,  # Corrigé : nombre seulement
                 'qualite_production': 9,
                 'autonomie_artistique': 8,
                 'support_label': 8,
@@ -621,7 +621,7 @@ class SoulAssassinsAnalyzer:
             'ILL BILL': {
                 'albums_produits': 3,
                 'duree_contrat': 8,
-                'rythme_sorties': '4 ans',
+                'rythme_sorties': 4.0,  # Corrigé : nombre seulement
                 'qualite_production': 8,
                 'autonomie_artistique': 8,
                 'support_label': 7,
@@ -630,7 +630,7 @@ class SoulAssassinsAnalyzer:
             'PLANET ASIA': {
                 'albums_produits': 2,
                 'duree_contrat': 7,
-                'rythme_sorties': '3.5 ans',
+                'rythme_sorties': 3.5,  # Corrigé : nombre seulement
                 'qualite_production': 8,
                 'autonomie_artistique': 7,
                 'support_label': 7,
@@ -639,7 +639,7 @@ class SoulAssassinsAnalyzer:
             'FLEE LORD': {
                 'albums_produits': 2,
                 'duree_contrat': 3,
-                'rythme_sorties': '1.5 ans',
+                'rythme_sorties': 1.5,  # Corrigé : nombre seulement
                 'qualite_production': 7,
                 'autonomie_artistique': 8,
                 'support_label': 8,
@@ -963,9 +963,11 @@ class SoulAssassinsAnalyzer:
         self.create_production_styles_analysis()
 
     def create_production_pace_chart(self):
-        """Graphique rythme de production"""
+        """Graphique rythme de production - CORRIGÉ"""
         artists = list(self.production_data.keys())
-        rythme = [float(self.production_data[artist]['rythme_sorties'].split()[0]) for artist in artists]
+        
+        # CORRECTION : Utiliser directement les valeurs numériques
+        rythme = [self.production_data[artist]['rythme_sorties'] for artist in artists]
         albums = [self.production_data[artist]['albums_produits'] for artist in artists]
         
         fig = go.Figure()
